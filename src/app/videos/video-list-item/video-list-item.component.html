@@ -1,0 +1,9 @@
+<div>
+  <p><b>Name:</b> {{video.name}}</p>
+  <p><b>Description:</b> {{video.description}}</p>
+  <p><b>Author:</b> {{video.author}}</p>
+  <p><b>Link:</b> {{video.link}}</p>
+  <button mat-raised-button color="primary">Play</button>
+  <button (click)="edit(video)" mat-raised-button color="accent">Edit</button>
+  <button (click)="delete(video)" mat-raised-button color="warn">Delete</button>
+</div>

@@ -1,1 +1,26 @@
-<p>new-video works!</p>
+<div>
+  <form [formGroup]="newVideoForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input formControlName="name" matInput autocomplete="off">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <input formControlName="description" matInput autocomplete="off">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Author</mat-label>
+      <input formControlName="author" matInput autocomplete="off">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Link</mat-label>
+      <input formControlName="link" matInput autocomplete="off">
+    </mat-form-field>
+    <div class="buttons" mat-dialog-actions>
+      <button mat-button type="button" (click)="onNoClick()">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" cdkFocusInitial>
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

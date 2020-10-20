@@ -1,1 +1,9 @@
-<p>video-list works!</p>
+<div *ngFor="let video of videosList">
+  <app-video-list-item [video]="video"></app-video-list-item>
+</div>
+
+<div class="fab-container">
+  <button mat-fab color="primary" (click)="openDialog()" matTooltip="Create New Note">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

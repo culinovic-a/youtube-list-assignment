@@ -4,6 +4,7 @@ import { EditVideoComponent } from './edit-video/edit-video.component';
 import { PlayVideoComponent } from './play-video/play-video.component';
 import { NewVideoComponent } from './new-video/new-video.component';
 import { VideoListComponent } from './video-list/video-list.component';
+import { VideoListItemComponent } from './video-list-item/video-list-item.component';
 
 const routes: Routes = [
   {
@@ -15,8 +16,8 @@ const routes: Routes = [
     component: VideoListComponent
   },
   {
-    path: 'new-video',
-    component: NewVideoComponent
+    path: 'listitem',
+    component: VideoListItemComponent
   },
   {
     path: 'play-video',

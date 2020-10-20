@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { VideoService } from '../../shared/services/video.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-new-video',
@@ -6,10 +9,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-video.component.scss']
 })
 export class NewVideoComponent implements OnInit {
+  newVideoForm: FormGroup;
 
-  constructor() { }
+  constructor(private fb: FormBuilder, private videoService: VideoService,
+    public dialogRef: MatDialogRef<NewVideoComponent>) {
+  }
 
   ngOnInit(): void {
+    this.buildForm();
+  }
+
+  buildForm(): void {
+    this.newVideoForm = this.fb.group({
+      name: '',
+      description: '',
+      author: '',
+      link: ''
+    });
+  }
+
+  onSubmit(): void {
+    console.log(this.newVideoForm.value);
+    this.videoService.createNewVideo(this.newVideoForm.value);
+    this.onNoClick();
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 }
