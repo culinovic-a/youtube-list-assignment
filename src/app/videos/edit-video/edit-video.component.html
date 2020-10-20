@@ -16,6 +16,7 @@
       <mat-label>Link</mat-label>
       <input formControlName="link" matInput autocomplete="off">
     </mat-form-field>
+    <youtube-player [videoId]="shortLink" [height]="150" [width]="300"></youtube-player>
     <div class="buttons" mat-dialog-actions>
       <button mat-button type="button" (click)="onNoClick()">Cancel</button>
       <button mat-raised-button color="primary" type="submit" cdkFocusInitial>

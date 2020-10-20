@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { VideoListItemComponent } from './video-list-item/video-list-item.component';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 const VIDEOS_MAT_MODULES = [
   MatFormFieldModule,
@@ -32,7 +33,8 @@ const VIDEOS_MAT_MODULES = [
     VideosRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    VIDEOS_MAT_MODULES
+    VIDEOS_MAT_MODULES,
+    YouTubePlayerModule
   ]
 })
 export class VideosModule { }
