@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { VideoService } from '../../shared/services/video.service';
 
 @Component({
   selector: 'app-edit-video',
@@ -16,21 +17,18 @@ export class EditVideoComponent implements OnInit {
   link: string;
   shortLink: string;
 
-  constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<EditVideoComponent>, @Inject(MAT_DIALOG_DATA) data) {
+  constructor(private videoService: VideoService, private fb: FormBuilder,
+    private dialogRef: MatDialogRef<EditVideoComponent>, @Inject(MAT_DIALOG_DATA) data) {
     this.name = data.name;
     this.description = data.description;
     this.author = data.author;
     this.link = data.link;
-    const videoId = this.link.split(/[=&]/);
-    this.shortLink = videoId[1];
+    this.shortLink = data.shortLink;
   }
 
   ngOnInit(): void {
     this.buildEditForm();
-
-    const tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    document.body.appendChild(tag);
+    this.videoService.youtubePlayer();
   }
 
   buildEditForm(): void {
@@ -39,7 +37,7 @@ export class EditVideoComponent implements OnInit {
       description: this.description,
       author: this.author,
       link: this.link,
-      // shortLink: this.shortLink
+      shortLink: this.shortLink
     });
   }
 
@@ -48,7 +46,14 @@ export class EditVideoComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.editForm.value);
+    this.cutLink();
+    this.videoService.updateVideo(this.name, this.editForm.value);
+    this.onNoClick();
+  }
+
+  cutLink(): void {
+    const videoId = this.editForm.value.link.split(/[=&]/);
+    this.editForm.value.shortLink = videoId[1];
   }
 
 }

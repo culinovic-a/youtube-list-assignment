@@ -1,7 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { VideoService } from '../../shared/services/video.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-video',
@@ -11,7 +12,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class NewVideoComponent implements OnInit {
   newVideoForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private videoService: VideoService,
+  constructor(private fb: FormBuilder, private router: Router, private videoService: VideoService,
     public dialogRef: MatDialogRef<NewVideoComponent>) {
   }
 
@@ -24,18 +25,23 @@ export class NewVideoComponent implements OnInit {
       name: '',
       description: '',
       author: '',
-      link: ''
+      link: '',
+      shortLink: ''
     });
   }
-
   onSubmit(): void {
-    console.log(this.newVideoForm.value);
+    this.cutLink();
     this.videoService.createNewVideo(this.newVideoForm.value);
     this.onNoClick();
   }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  cutLink(): void {
+    const videoId = this.newVideoForm.value.link.split(/[=&]/);
+    this.newVideoForm.value.shortLink = videoId[1];
   }
 
 }

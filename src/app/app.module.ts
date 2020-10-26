@@ -9,6 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { VideosModule } from './videos/videos.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { VideoService } from './shared/services/video.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     VideosModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [VideoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

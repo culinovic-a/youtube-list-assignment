@@ -1,1 +1,15 @@
-<p>play-video works!</p>
+<button [routerLink]="'../video-list'" mat-raised-button color="primary">Back to the List of
+  Videos</button>
+<div class="container" *ngFor="let video of playVideo">
+  <div class="content">
+    <p><b>Video Name: </b>{{video.name}}</p>
+    <p><b>Video Description: </b>{{video.description}}</p>
+    <p><b>Video Author: </b>{{video.author}}</p>
+    <p><b>Video Link: </b>{{video.link}}</p>
+    <div>
+      <button (click)="edit(video)" mat-raised-button color="accent">Edit</button>
+      <button (click)="delete(video)" mat-raised-button color="warn">Delete</button>
+    </div>
+    <youtube-player videoId="{{video.shortLink}}" [height]="350" [width]="700"></youtube-player>
+  </div>
+</div>

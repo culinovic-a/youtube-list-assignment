@@ -3,4 +3,5 @@ export interface Video {
   description: string;
   author: string;
   link: string;
+  shortLink: string;
 }
